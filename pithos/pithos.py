@@ -494,9 +494,9 @@ class PithosWindow(Gtk.ApplicationWindow):
         if prev and prev.start_time:
             prev.finished = True
             dur_stat, dur = self.player.query_duration(self.time_format)
-            prev.duration = dur/1000000000 if dur_stat else None
+            prev.duration = dur//1000000000 if dur_stat else None
             pos_stat, pos = self.player.query_position(self.time_format)
-            prev.position = pos/1000000000 if pos_stat else None
+            prev.position = pos//1000000000 if pos_stat else None
             self.emit("song-ended", prev)
 
         self.playing = False
@@ -701,11 +701,11 @@ class PithosWindow(Gtk.ApplicationWindow):
             self.station_changed(self.stations_model[index][0])
 
     def format_time(self, time_int):
-        time_int = time_int / 1000000000
+        time_int = time_int // 1000000000
         s = time_int % 60
-        time_int /= 60
+        time_int //= 60
         m = time_int % 60
-        time_int /= 60
+        time_int //= 60
         h = time_int
 
         if h:
